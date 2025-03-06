@@ -1,43 +1,44 @@
 package com.sm.noteApp.ApiGateway.security;
 
-import java.io.IOException;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ServerWebExchange;
+import org.springframework.web.server.WebFilter;
+import org.springframework.web.server.WebFilterChain;
 
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.stereotype.Component;
-import org.springframework.web.filter.OncePerRequestFilter;
+import reactor.core.publisher.Mono;
 
 /*@Component*/
-public class JwtFilter extends OncePerRequestFilter {
+/*@Order(-1)*/ // Ensures execution order
+public class JwtFilter implements WebFilter {
+
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
-            throws ServletException, IOException {
+    public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
+        System.out.println("Intercepting request: " + exchange.getRequest().getURI());
+
+        // Example: Add a custom header
+        exchange.getResponse().getHeaders().add("X-Custom-Header", "Reactive");
         
-        String authHeader = request.getHeader("Authorization");
+        String authHeader = exchange.getRequest().getHeaders().getFirst("Authorization");
+
 
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            response.getWriter().write("Missing or invalid token");
-            return;
+        	 exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
+        	//exchange.getResponse().getWriter().write("Missing or invalid token");
+        	  return exchange.getResponse().setComplete();
         }
+        String token = authHeader.substring(7);  // Extract the token (removes "Bearer ")
 
-        String token = authHeader.substring(7); // Remove "Bearer " prefix
-        
-        System.out.println("check :"+JwtUtil.validateToken(token));
-        
+        // If token validation fails, respond with Unauthorized
         if (!JwtUtil.validateToken(token)) {
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            response.getWriter().write("Invalid token");
-            return;
+            exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
+            return exchange.getResponse().setComplete();
         }
 
-        // Extract username (optional, if needed)
-        String username = JwtUtil.extractUsername(token);
-        request.setAttribute("username", username);
-
-        chain.doFilter(request, response);
+        return chain.filter(exchange);
     }
+    
+    
+    
+
+    
 }

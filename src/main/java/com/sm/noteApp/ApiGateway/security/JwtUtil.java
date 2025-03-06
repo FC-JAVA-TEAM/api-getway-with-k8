@@ -10,23 +10,22 @@ import java.util.function.*;
 @Service
 public class JwtUtil {
 
-    private static String SECRET_KEY = "DIGITALIZATION";
+   // private static String SECRET_KEY = "DIGITALIZATION";
+    private static String SECRET_KEY = "afafasfafafasfasfasfafacasdasfasxASFACASDFACASDFASFASFDAFASFASDAADSCSDFADCVSGCFVADXCcadwavfsfarvf";
 
 
  // Validate Token
     public static boolean validateToken(String token) {
-        try {
             try {
 				Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token);
 				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				 return false;
 			}
             return true;
-        } catch (Exception e) {
-            return false;
-        }
+
     }
 
     // Extract Username

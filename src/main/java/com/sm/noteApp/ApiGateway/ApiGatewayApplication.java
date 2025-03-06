@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.sm.noteApp.ApiGateway.security.JwtFilter;
-
+import org.springframework.web.server.WebFilter;
 
 @SpringBootApplication
 public class ApiGatewayApplication {
@@ -17,7 +17,7 @@ public class ApiGatewayApplication {
 
 	
 	@Bean
-    public OncePerRequestFilter jwtFilter() {
+    public WebFilter jwtFilter() {
         return new JwtFilter();
     }
 	 
