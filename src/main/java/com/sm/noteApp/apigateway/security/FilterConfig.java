@@ -1,8 +1,4 @@
-package com.sm.noteApp.ApiGateway.security;
-
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+package com.sm.noteApp.apigateway.security;
 
 /*@Configuration*/
 public class FilterConfig {

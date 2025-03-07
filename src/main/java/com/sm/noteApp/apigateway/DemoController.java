@@ -1,4 +1,4 @@
-package com.sm.noteApp.ApiGateway;
+package com.sm.noteApp.apigateway;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

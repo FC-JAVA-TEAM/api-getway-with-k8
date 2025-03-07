@@ -1,11 +1,7 @@
-package com.sm.noteApp.ApiGateway.security;
+package com.sm.noteApp.apigateway.security;
 
 import io.jsonwebtoken.*;
-import org.springframework.security.core.userdetails.*;
 import org.springframework.stereotype.*;
-
-import java.util.*;
-import java.util.function.*;
 
 @Service
 public class JwtUtil {

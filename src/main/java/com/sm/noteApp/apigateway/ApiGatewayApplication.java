@@ -1,11 +1,10 @@
-package com.sm.noteApp.ApiGateway;
+package com.sm.noteApp.apigateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.sm.noteApp.ApiGateway.security.JwtFilter;
+import com.sm.noteApp.apigateway.security.JwtFilter;
 import org.springframework.web.server.WebFilter;
 
 @SpringBootApplication
