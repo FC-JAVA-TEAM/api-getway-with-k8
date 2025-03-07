@@ -6,7 +6,12 @@ import org.springframework.context.annotation.Bean;
 
 import com.sm.noteApp.apigateway.security.JwtFilter;
 import org.springframework.web.server.WebFilter;
-
+/*
+ * ApiGatewayApplication is the main class containing bean registration for Jwtfilter
+ * 
+ * @author Shilpi
+ * @since 2025-03-06
+ */
 @SpringBootApplication
 public class ApiGatewayApplication {
 
