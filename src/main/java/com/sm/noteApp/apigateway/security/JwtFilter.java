@@ -7,8 +7,12 @@ import org.springframework.web.server.WebFilterChain;
 
 import reactor.core.publisher.Mono;
 
-/*@Component*/
-/*@Order(-1)*/ // Ensures execution order
+/*
+ * JwtFilter will filter and intercept each request
+ * 
+ * @author Shilpi
+ * @since 2025-03-06
+ */
 public class JwtFilter implements WebFilter {
 
     @Override
