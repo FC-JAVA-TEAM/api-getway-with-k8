@@ -8,7 +8,7 @@ on:
 
 env:
   PROJECT_ID: ultimate-flare-452110-g3
-  GKE_CLUSTER: cluster-demo-1    # TODO: update to cluster name
+  GKE_CLUSTER: note-app-cluster    # TODO: update to cluster name
   GKE_ZONE: us-central1-c   # TODO: update to cluster zone
 
 
