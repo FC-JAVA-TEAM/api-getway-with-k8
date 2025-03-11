@@ -33,7 +33,7 @@ jobs:
 
       # Authenticate with Google Cloud using service account key
       - name: Set up Google Cloud authentication
-        uses: google-github-actions/auth@v0
+        uses: google-github-actions/auth@v2
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}  # Add your GCP service account key as a secret in GitHub
 
