@@ -49,7 +49,7 @@ jobs:
 #          MAVEN_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build and Push cloud-gateway
-        run: mvn package dockerfile:push --file cloud-gateway/pom.xml
+        run: mvn package dockerfile:push --file api-gateway/pom.xml
         env:
           MAVEN_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
