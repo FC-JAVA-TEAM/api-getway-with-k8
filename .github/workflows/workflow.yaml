@@ -30,6 +30,8 @@ jobs:
 
       - name: Echo Build Successful
         run: echo "Build was successful!"
+      - name: Configure Docker for GCP
+        run: gcloud auth configure-docker gcr.io
 
       # Authenticate with Google Cloud using service account key
       - name: Set up Google Cloud authentication
