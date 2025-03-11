@@ -62,6 +62,7 @@ jobs:
   Deploy:
     needs: build
     runs-on: ubuntu-latest
+    if: always()  # Ensures this job runs regardless of the 'build' job's outcome
     steps:
       - name: Checkout code
         uses: actions/checkout@main  # Ensure this matches your default branch
