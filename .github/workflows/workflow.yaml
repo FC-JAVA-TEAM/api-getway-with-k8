@@ -49,7 +49,7 @@ jobs:
         uses: mr-smithers-excellent/docker-build-push@v5
         with:
           image: ultimate-flare-452110-g3/apigateway
-          tags: 0.0.1
+          tags: 0.0.2
           dockerfile: ./Dockerfile  # Ensure the correct relative path to the Dockerfile
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
