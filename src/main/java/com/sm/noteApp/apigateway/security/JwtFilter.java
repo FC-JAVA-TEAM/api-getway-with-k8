@@ -28,7 +28,7 @@ public class JwtFilter implements WebFilter {
         String authHeader = exchange.getRequest().getHeaders().getFirst("Authorization");
         
         String path = exchange.getRequest().getURI().getPath();
-        if (path.matches("/auth/.*")) {
+        if (path.matches("/auth/.*") || path.matches("/hello")) {
             // Allow access to public endpoints without JWT validation
             return chain.filter(exchange);
         }
