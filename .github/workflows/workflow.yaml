@@ -18,7 +18,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
@@ -61,13 +63,15 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - name: kubectl - Google Cloud GKE cluster.
+      - name: Checkout code
+        uses: actions/checkout@main  # Ensure this matches your default branch
+
+      - name: Authenticate with GKE
         uses: ameydev/gke-kubectl-action@master
         env:
           PROJECT_ID: ${{ env.PROJECT_ID }}
           CLUSTER_NAME: ${{ env.GKE_CLUSTER }}
           ZONE_NAME: ${{ env.GKE_ZONE }}
-          APPLICATION_CREDENTIALS: ${{ secrets.GKE_SA_KEY }}
+          APPLICATION_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
         with:
           args: apply -f deployment.yaml
