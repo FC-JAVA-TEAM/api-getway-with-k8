@@ -1,3 +1,12 @@
+logging:
+  level:
+    com:
+      sm:
+        noteApp: trace
+    org:
+    springframework:
+      cloud:
+        gateway: trace
 spring:
   main:
     web-application-type: reactive
