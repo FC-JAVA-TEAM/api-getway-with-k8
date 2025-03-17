@@ -16,5 +16,5 @@ spring:
             - Path=/api/**
           filters:
             - StripPrefix=0
-#server:
-#  port: 8080
+server:
+  port: 8080
