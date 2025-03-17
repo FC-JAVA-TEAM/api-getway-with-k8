@@ -1,6 +1,6 @@
 spring:
-  main:
-    web-application-type: reactive
+#  main:
+#    web-application-type: reactive
   cloud:
     gateway:
       routes:
@@ -16,5 +16,5 @@ spring:
             - Path=/api/**
           filters:
             - StripPrefix=0
-server:
-  port: 8080
+#server:
+#  port: 8080
