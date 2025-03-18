@@ -33,8 +33,11 @@ spring:
 
 #server:
 #  port: 8080
-#management:
-#  endpoints:
-#    web:
-#      exposure:
-#        include: *
+management:
+  endpoint:
+    gateway:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: gateway
