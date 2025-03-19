@@ -10,13 +10,13 @@ spring:
       #          enabled: true
       routes:
         - id: user-service
-          #          uri: lb://user-service-svc
-          uri: http://localhost:9090
+          uri: lb://user-service-svc
+          #          uri: http://localhost:9090
           predicates:
             - Path=/auth/**,/integration/**
         - id: note-app
-          uri: http://localhost:8082
-          #          uri: lb://noteapp-service-svc
+          uri: lb://noteapp-service-svc
+          #          uri: http://localhost:8082
           predicates:
             - Path=/api/**
 
