@@ -4,6 +4,7 @@
 #RUN mvn -f /home/app/pom.xml clean install
 
 FROM openjdk:21-jdk-slim
+RUN apt-get update && apt-get install -y dnsutils   # to install nslookup
 #VOLUME ["/tmp"]
 #COPY --from=build /home/app/target/*.jar app.jar
 COPY target/*.jar app.jar
