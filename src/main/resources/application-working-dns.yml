@@ -12,12 +12,12 @@ spring:
             - Path=/telus-service/auth/**,/telus-service/integration/**
           filters:
             - StripPrefix=1
-        - id: note-app
-          uri: ${NOTE_APP_URI}  # lb://noteapp-service (from K8s service)
-          predicates:
-            - Path=/note-service/api/notes/**
-          filters:
-           - StripPrefix=1
+     #   - id: note-app
+     #     uri: ${NOTE_APP_URI}  # lb://noteapp-service (from K8s service)
+     #     predicates:
+      #      - Path=/notes/**
+     #     filters:
+      #      - StripPrefix=1
 
 management:
   endpoint:

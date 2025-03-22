@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: telus-api-gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: telus-api-gateway
+  template:
+    metadata:
+      labels:
+        app: telus-api-gateway
+    spec:
+      containers:
+        - name: telus-api-gateway
+          image: shaikh79/apigetway:0.0.13  # Replace with your actual Docker image
+          ports:
+            - containerPort: 8080  # Exposed port inside the container
+          env:
+            - name: USER_SERVICE_URI
+              value: ""
+            - name: NOTE_APP_URI
+              value: ""
+            - name: USER_SERVICE_PORT
+              value: "80"  # Service port (default for HTTP)
+            - name: SPRING_PROFILES_ACTIVE
+              value: "k8s"  # Activating the 'k8s' profile
+          resources:
+            limits:
+              memory: "2Gi"
+              cpu: "250m"
+            requests:
+              memory: "256Mi"
+              cpu: "100m"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: telus-api-gateway
+spec:
+  selector:
+    app: telus-api-gateway  # Matches the labels from Deployment
+  ports:
+    - protocol: TCP
+      port: 90  # Expose port 90 externally (can be LoadBalancer or NodePort)
+      targetPort: 8080  # Container port
+  type: LoadBalancer  # Use LoadBalancer to expose the service to external traffic (if applicable)

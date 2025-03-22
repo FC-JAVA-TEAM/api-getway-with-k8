@@ -33,7 +33,8 @@ public class JwtFilter implements WebFilter {
         log.info("Authorization Header: {}", authHeader);
 
         String path = exchange.getRequest().getURI().getPath();
-        if (path.matches("/auth/.*") || path.matches("/hello")) {
+      //  if (path.matches("/auth/.*") || path.matches("/hello")) {
+        	if (path.matches(".*(/auth/.*|/hello)$")) {
             log.info("Allowing access to public endpoint: {}", path);
             // Allow access to public endpoints without JWT validation
             return chain.filter(exchange);

@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: telus-api-gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: telus-api-gateway
+  template:
+    metadata:
+      labels:
+        app: telus-api-gateway
+    spec:
+      containers:
+        - name: api-gateway
+          image: shaikh79/apigetway:0.0.10
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_CLOUD_KUBERNETES_ENABLED
+              value: "true"
+          resources:
+            limits:
+              memory: "1Gi"
+              cpu: "500m"
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: telus-api-gateway
+spec:
+  selector:
+    app: telus-api-gateway
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: LoadBalancer
