@@ -1,5 +1,9 @@
 🛡️ Tech Stack
 
+📣 Related Projects
+User-service 
+https://github.com/FC-JAVA-TEAM/user-service-with-k8-and-api-getway
+
 🚀 Project Overview
 This project demonstrates a Kubernetes-ready Spring Boot API Gateway with dynamic service discovery using environment variables.
 It enables flexible routing between microservices without hardcoding any URLs.
