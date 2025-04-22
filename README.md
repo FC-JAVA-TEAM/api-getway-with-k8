@@ -63,6 +63,8 @@ Here’s a simple visualization of the flow:
 lua
 Copy
 Edit
+
+
 Kubernetes Deployment
    |
    |---> Environment Variables (USER_SERVICE_URI, NOTE_APP_URI)
@@ -72,6 +74,8 @@ Kubernetes Deployment
                    |---> Spring Boot App reads Environment Variables
                            |
                            |---> Gateway dynamically routes to correct services
+
+
 📋 Quick Summary
 Deploy using deployment-dns-01.yaml — production-ready setup.
 
