@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: telus-api-gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: telus-api-gateway
+  template:
+    metadata:
+      labels:
+        app: telus-api-gateway
+    spec:
+      containers:
+        - name: telus-api-gateway
+          image: shaikh79/apigetway:0.0.13  # Replace with your actual Docker image
+          ports:
+            - containerPort: 8080  # Exposed port inside the container
+          env:
+            - name: USER_SERVICE_URI
+              value: "http://telus-service.default.svc.cluster.local:80"
+            - name: NOTE_APP_URI
+              value: "http://note-service.default.svc.cluster.local:77"
+            - name: USER_SERVICE_PORT
+              value: "80"  # Service port (default for HTTP)
+            - name: SPRING_PROFILES_ACTIVE
+              value: "k8s"  # Activating the 'k8s' profile
+          resources:
+            limits:
+              memory: "2Gi"
+              cpu: "250m"
+            requests:
+              memory: "256Mi"
+              cpu: "100m"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: telus-api-gateway
+  annotations:
+    cloud.google.com/health-check-port: "8080"  # Required for GCE health checks
+    cloud.google.com/health-check-path: "/actuator/health"  # Health check path
+spec:
+  selector:
+    app: telus-api-gateway
+  ports:
+    - protocol: TCP
+      port: 80  # Standard HTTP port
+      targetPort: 8080  # Container port
+  type: ClusterIP  # Default service type (internal cluster access)

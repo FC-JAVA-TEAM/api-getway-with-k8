@@ -4,4 +4,4 @@ spring:
       on-profile: local
 
 USER_SERVICE_URI: http://localhost:7878
-#NOTE_APP_URI: http://localhost:8082
+NOTE_APP_URI: http://localhost:8082

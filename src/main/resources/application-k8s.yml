@@ -3,5 +3,5 @@ spring:
     activate:
       on-profile: k8s
 
-USER_SERVICE_URI: lb://telus-service
-#NOTE_APP_URI: lb://noteapp-service
+USER_SERVICE_URI: lb://user-service
+NOTE_APP_URI: lb://noteapp-service

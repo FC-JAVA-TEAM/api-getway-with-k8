@@ -6,16 +6,16 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: telus-service-route
+        - id: user-service-route
           uri: ${USER_SERVICE_URI} #http://telus-service.default.svc.cluster.local:7878 #http://34.123.220.19:80 #uri: ${USER_SERVICE_URI} #http://localhost:7878  # lb://telus-service (from K8s service)
           predicates:
-            - Path=/telus-service/auth/**,/telus-service/integration/**
+            - Path=/user-service/auth/**,/user-service/integration/**
           filters:
             - StripPrefix=1
         - id: note-app
           uri: ${NOTE_APP_URI}  # lb://noteapp-service (from K8s service)
           predicates:
-            - Path=/note-service/api/notes/**
+            - Path=/user-service/api/notes/**
           filters:
            - StripPrefix=1
 
